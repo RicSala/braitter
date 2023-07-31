@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js" // Specify the Prisma client - 
+}
+
+datasource db {
+  provider = "mongodb" // Specify the MongoDB database adapter
+  url      = env("MONGO_URL")
+}
+
+model Category {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  companions Companion[]
+}
+
+model Companion {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  userName     String
+  userId       String
+  name         String
+  description  String
+  instructions String
+  seed         String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  categoryId String   @db.ObjectId
+  category   Category @relation(fields: [categoryId], references: [id])
+}
