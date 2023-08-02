@@ -18,6 +18,23 @@ const DropdownMenuSub = DropdownMenuPrimitive.Sub
 
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
+/**
+ * Define the type of the prop object so we can add props to the "Radix" component
+ * @typedef {Object} ExtraProps
+ * @property {string} [className]
+ * @property {boolean} [inset] this is a comment that will be visible in intellisense
+ * @property {React.ReactNode} [children]
+ */
+
+/**
+ * We import the radix props and merge them with the extra props we just created
+ * @typedef {ExtraProps & import("@radix-ui/react-dropdown-menu").DropdownMenuSubTriggerProps} MergedDropdownMenuSubTriggerProps
+ */
+
+/**
+ * and we give it to the forward ref (first is the ref, second is the type we created in the previous step)
+ * @type {React.ForwardRefRenderFunction<HTMLElement, MergedDropdownMenuSubTriggerProps>}
+ */
 const DropdownMenuSubTrigger = React.forwardRef(({ className, inset, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
@@ -34,6 +51,24 @@ const DropdownMenuSubTrigger = React.forwardRef(({ className, inset, children, .
 DropdownMenuSubTrigger.displayName =
   DropdownMenuPrimitive.SubTrigger.displayName
 
+// Define the types usin the same method as above
+
+
+/**
+ * @typedef {ExtraProps & import("@radix-ui/react-dropdown-menu").DropdownMenuSubContentProps} MergedDropdownMenuSubContentProps
+ * @type {React.ForwardRefRenderFunction<HTMLElement, MergedDropdownMenuSubContentProps>}
+ * @param {MergedDropdownMenuSubContentProps} props
+ * @param {React.ForwardedRef<HTMLElement>} ref
+ * @returns 
+ * @example
+ * <DropdownMenuSubContent>
+ *  <DropdownMenuLabel>Label</DropdownMenuLabel>
+ * <DropdownMenuItem>Item 1</DropdownMenuItem>
+ * <DropdownMenuItem>Item 2</DropdownMenuItem>
+ * <DropdownMenuItem>Item 3</DropdownMenuItem>
+ * </DropdownMenuSubContent>
+ * 
+ **/
 const DropdownMenuSubContent = React.forwardRef(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.SubContent
     ref={ref}
@@ -45,6 +80,7 @@ const DropdownMenuSubContent = React.forwardRef(({ className, ...props }, ref) =
 ))
 DropdownMenuSubContent.displayName =
   DropdownMenuPrimitive.SubContent.displayName
+
 
 const DropdownMenuContent = React.forwardRef(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>

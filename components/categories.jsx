@@ -1,8 +1,13 @@
+// @ts-check
 'use client'
+
 
 import { cn } from "@/lib/utils"
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
+import { Button } from "./ui/button";
+import { DropdownMenuSubTrigger } from "./ui/dropdown-menu";
+import { DropdownMenuSubContent } from "@radix-ui/react-dropdown-menu";
 
 export default function Categories({ data }) {
 
