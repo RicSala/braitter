@@ -10,9 +10,18 @@ export default async function CompanionIdPage({
     //TODO: check subscription  status
 
     let companion = null;
+    let isNew = false
 
     if (params.companionId === "new") {
-        companion = {}
+        isNew = true
+        companion = {
+            name: "",
+            description: "",
+            instructions: "",
+            seed: "",
+            src: "",
+            categoryId: undefined,
+        }
     } else {
         companion = await prisma.companion.findUnique({
             where: { id: params.companionId }
@@ -27,6 +36,7 @@ export default async function CompanionIdPage({
         <CompanionForm
             initialData={companion}
             categories={categories}
+            isNew={isNew}
         />
     );
 }
