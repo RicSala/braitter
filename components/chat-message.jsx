@@ -5,7 +5,7 @@ import { useToast } from "./ui/use-toast";
 import { cn } from "@/lib/utils";
 import BotAvatar from "./bot-avatar";
 import { BeatLoader } from "react-spinners";
-import UserAvatar from "./use-avatar";
+import UserAvatar from "./user-avatar";
 import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
 
